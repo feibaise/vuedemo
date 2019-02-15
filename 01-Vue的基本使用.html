@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!-- vue 的模板语法{{}} 双花括号差值 -->
+    <h2>{{msg}}</h2>
+    <h3>{{1+1}}</h3>
+    <h4>{{isTrue}}</h4>
+    <h1>{{str.split('').reverse().join('')}}</h1>
+    <h2>{{1>2?'真的':'假的'}}</h2>
+</div>
+<!--引包 -->
+<script type="text/javascript" src="./node_modules/vue/dist/vue.min.js"></script>
+<!--2. 创建实例化对象-->
+
+<script type="text/javascript">
+    var data = {
+        //数据属性
+        //既可以是一个对象也可以是一个函数
+        msg: '黄瓜22222',
+        isTrue: 1 == 1,
+        str: 'hello Vue'
+    }
+    //如果template 中定义了内容 那么优先加载template ,如果没有定义内容那么加载的是#app的模板
+    var vm = new Vue({
+        el: '#app',//目的地
+        data: data, template: ""
+
+    });
+    console.log(vm.$el)
+    console.log(vm.$data === data)
+    //除了数据属性 vue 实例还暴露了一些有用的实例属性和方法.他们的有前缀$
+</script>
+</body>
+</html>
