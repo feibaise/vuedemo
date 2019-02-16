@@ -48,14 +48,24 @@
                 currentIndex: 0
             }
         }, computed: {
-            //计算属性只有getter
-            //setter也可以设置
-            getCurrentSongSrc: function () {
-                return this.musicData[this.currentIndex].songSrc
+            getCurrentSongSrc: {
+                set: function (newV) {
+                    console.log(newV)
+                    this.currentIndex = newV
+
+                },
+                get: function () {
+                    return this.musicData[this.currentIndex].songSrc;
+                }
+
             }
+
         }, methods: {
             clickHandler(index) {
-                this.currentIndex = index;
+                //直接修改的数据属性
+                // this.currentIndex = index;
+                console.log(this.getCurrentSongSrc)
+                this.getCurrentSongSrc = index;
             }
         }
     })
