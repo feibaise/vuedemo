@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全局部组件的使用</title>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+<script type="text/javascript">
+    //全局组件的创建
+    //第一个参数是组件的名称,第二个参数是options
+    Vue.component('Vbtn', {
+        <!-- 插槽  内置的全局组件 slot 做为承载分发内容的出口   -->
+        template: ' <button> <slot> </slot> </button>'
+    })
+
+    var Vheader = {
+        data() {
+            return {}
+        },
+        template: '<div> 我是头部组件</div>',
+        methods: {}
+    }
+    var Vside = {
+        template: '<div> 我是侧边栏组件 <Vbtn>按钮</Vbtn></div>'
+    }
+    var Vcontent = {
+        template: '<div> 我是内容组件 <Vbtn>登陆</Vbtn> <Vbtn>注册</Vbtn>'
+    }
+    //1.声明子组件
+    var App = {
+        template: ' <div> <Vheader/> <Vcontent/> <Vside/> </div>',
+        components: {
+            Vheader,
+            Vside,
+            Vcontent
+        }
+
+    }
+
+    new Vue({
+        el: "#app",
+        data() {
+            return {}
+        },
+        components: {
+            //挂载子组件
+            App
+        }
+        //3.使用子组件
+        , template: '<App/>'
+    })
+</script>
+</body>
+</html>
