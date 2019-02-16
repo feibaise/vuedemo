@@ -3,6 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>全局部组件的使用</title>
+    <style type="text/css">
+        .default {
+            display: inline-block;
+            line-height: 1;
+            white-space: nowrap;
+            cursor: pointer;
+            background: #fff;
+            border: 1px solid #dcdfe6;
+            border-color: #dcdfe6;
+            color: #606266;
+            -webkit-appearance: none;
+            text-align: center;
+            box-sizing: border-box;
+            outline: none;
+            margin: 0;
+            transition: .1s;
+            font-weight: 500;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            padding: 12px 20px;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+
+        .primary {
+            color: #fff;
+            background-color: #409eff;
+            border-color: #409eff;
+        }
+
+        .success {
+            color: #fff;
+            background-color: #67c23a;
+            border-color: #67c23a;
+        }
+
+    </style>
 </head>
 <body>
 <div id="app"></div>
@@ -11,8 +49,18 @@
     //全局组件的创建
     //第一个参数是组件的名称,第二个参数是options
     Vue.component('Vbtn', {
+        data() {
+            return {
+                myType: ''
+            }
+        }, created() {
+            this.myType = this.type;
+            console.log(this.myType);
+
+        },
         <!-- 插槽  内置的全局组件 slot 做为承载分发内容的出口   -->
-        template: ' <button> <slot> </slot> </button>'
+        template: ' <button class="default" :class="type"> <slot> </slot> </button>',
+        props: ['type']
     })
 
     var Vheader = {
@@ -26,7 +74,7 @@
         template: '<div> 我是侧边栏组件 <Vbtn>按钮</Vbtn></div>'
     }
     var Vcontent = {
-        template: '<div> 我是内容组件 <Vbtn>登陆</Vbtn> <Vbtn>注册</Vbtn>'
+        template: '<div> 我是内容组件 <Vbtn type="primary">主要按钮</Vbtn> <Vbtn type="success">成功按钮</Vbtn>'
     }
     //1.声明子组件
     var App = {
