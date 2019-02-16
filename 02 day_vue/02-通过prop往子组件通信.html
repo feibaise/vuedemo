@@ -14,7 +14,7 @@
 
 
     Vue.component('Child', {
-        template: '<div> <p>我是一个子组件</p> ' +
+        template: '<div> <p>我是一个子组件{{childData}}</p> ' +
         '<input type="text" v-model ="childData"> </div>',
         props: ['childData']
 
